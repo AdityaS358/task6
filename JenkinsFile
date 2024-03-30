@@ -1,28 +1,32 @@
 pipeline {
     agent any
 
+    tools{
+        maven 'Maven'
+    }
+
     stages {
-        stage('Checkout') {
+        stage("Checkout") {
             steps {
-                git 'https://github.com/AdityaS358/task6.git'
+                git branch: 'main', url: 'https://github.com/AdityaS358/task6.git'
             }
         }
 
-        stage('Build') {
+        stage("Build") {
             steps {
-                sh 'mvn clean'
+                bat 'mvn clean'
             }
         }
 
-        stage('Test') {
+        stage("Test") {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
-        stage('Deploy') {
+        stage("Deploy") {
             steps {
-                sh 'echo "Deployment Stage Successful!"'
+                echo 'Deployment Stage Successful!'
             }
         }
     }
